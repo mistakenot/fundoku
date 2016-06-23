@@ -58,7 +58,7 @@ object Puzzle {
       } yield (f(a, b), s2)
     }
 
-    val puzzle: Parser[Puzzle] = 
+    val puzzle: Parser[Puzzle] =
       parse2(name, grid, Puzzle.puzzle)
 
     // ... but I could get map2 from cats.Apply if I can implement ap and map for Parser[_]
@@ -83,5 +83,19 @@ object Puzzle {
     // I guess it could be handy to compose stuff like this if we had more parsers
   }
 
-  // Implement toString for Puzzle...
+  // Method impl.
+  // This assumes:
+  // 0 1 2  3 4 5  6 7 8
+  // 9 10 ...
+  implicit class PuzzleExtensions(puzzle: Puzzle) {
+
+    def cells(): Array[Cell] = puzzle._2
+
+    def name(): String = puzzle._1
+    
+    def toString(): String = {
+
+    }
+  }
+
 }
